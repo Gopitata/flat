@@ -1,0 +1,9 @@
+form: FIXEDWIDTH
+id: 'EmployeeType'
+name: 'EmployeeType'
+values: 
+- { name: 'empid', usage: M, type: String, length: 3 }
+- { name: 'empfname', usage: M, type: String, length: 10 }
+- { name: 'emplname', usage: M, type: String, length: 10 }
+- { name: 'technology', usage: M, type: String, length: 15 }
+- { name: 'companyname', usage: M, type: String, length: 15 }
