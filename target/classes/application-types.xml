@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="EmployeeType" format="fixedWidth">
+      <types:shape format="fixedWidth" element="EmployeeType" location="EmployeeType.ffd"/>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#ac1ab983-6ca8-4caf-bf77-631101c8a14d">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="EmployeeType"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

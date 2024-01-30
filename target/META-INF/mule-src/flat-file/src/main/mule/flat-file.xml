@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="c9c65bbd-6585-4486-8da2-c70ad7d8e47c" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="flat-fileFlow" doc:id="3457ed04-c6af-4654-b9fa-860a031fe604" >
+		<http:listener doc:name="Listener" doc:id="45f58b36-8b09-4385-95c3-3152b8a89cf3" config-ref="HTTP_Listener_config" path="/flat"/>
+		<logger level="INFO" doc:name="Logger" doc:id="fe8adcf3-4484-4918-a7b4-03840b6980bd" message="#[payloa]"/>
+		<ee:transform doc:name="Transform Message" doc:id="ac1ab983-6ca8-4caf-bf77-631101c8a14d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/flatfile schemaPath="EmployeeType.ffd"
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
